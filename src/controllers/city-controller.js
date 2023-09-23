@@ -69,7 +69,7 @@ const get=async (req,res)=>{
 };
 const update=async (req,res)=>{
     try{
-        console.log(req.params.id+" "+req.body.name+"con")
+        
            const city=await CityService.updateCity(req.params.id,req.body.name);
            return res.status(201).json({
             data:city,
@@ -89,8 +89,30 @@ const update=async (req,res)=>{
     }
     
 };
+const filter=async (req,res)=>{
+  try{
+     
+         const city=await CityService.filterCity(req.query);
+         return res.status(201).json({
+          data:city,
+          success:true,
+          message:"City dileverd successfuly",
+          err:{},
+         })
+  }
+  catch(error){
+      console.log(error)
+            return res.status(500).json({
+              data:[],
+              success:false,
+              message:"City could not be dilivered",
+              err:error
+            })
+  }
+  
+};
 module.exports={
-    create,get,destroy,update
+    create,get,destroy,update,filter
 }
 
 

@@ -43,5 +43,15 @@ class CityService{
               throw{error};
         }
       }
+      async filterCity(filter){
+        try{
+           const cities=await this.cityRepository.filterCity(filter);
+           return cities;
+        }catch(error){
+          console.log("An error has occured ");
+            throw{error};
+      }
+        
+      }
 }
 module.exports=CityService;
