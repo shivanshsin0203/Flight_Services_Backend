@@ -3,7 +3,7 @@ const CityService=new CityServices();
 
 const create=async (req,res)=>{
     try{
-        console.log("here");
+       
         const city=await CityService.createCity(req.body);
            return res.status(201).json({
             data:city,
