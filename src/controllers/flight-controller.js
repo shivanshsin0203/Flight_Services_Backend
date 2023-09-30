@@ -20,10 +20,29 @@ const create=async(req,res)=>{
         return res.status(500).json({
             error:error,
             success:false,
-            message:"Flighgt cannot be added"
+            message:"Flight cannot be added"
+        })
+      }
+}
+const getAll =async(req,res)=>{
+      try{
+         const response=await flightService.getAllFlightData(req.query);
+         return res.status(201).json({
+            data:response,
+            success:true,
+            error:'',
+            message:'flight deliverd sucessfully '
+         })
+      }
+      catch(error){
+        console.log("Error occured in Controller flight");
+        return res.status(500).json({
+            error:error,
+            success:false,
+            message:"Flight cannot be delivered"
         })
       }
 }
 module.exports={
-    create,
+    create,getAll
 }
