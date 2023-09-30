@@ -7,9 +7,7 @@ const flightService=new FlightServices();
 const create=async(req,res)=>{
       try{
         const flight= await flightService.createFlight(req.body);
-        if(!checkTime(data.arrivalTime,departureTime)){
-             throw {error:'Time is not correct'}
-        }
+        
         return res.status(201).json({
             data:flight,
             success:true,
