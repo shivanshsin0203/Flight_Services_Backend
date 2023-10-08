@@ -43,6 +43,44 @@ const getAll =async(req,res)=>{
         })
       }
 }
+const get =async(req,res)=>{
+  try{
+     const response=await flightService.getFlight(req.params.id);
+     return res.status(201).json({
+        data:response,
+        success:true,
+        error:'',
+        message:'flight deliverd sucessfully '
+     })
+  }
+  catch(error){
+    console.log("Error occured in Controller flight");
+    return res.status(500).json({
+        error:error,
+        success:false,
+        message:"Flight cannot be delivered"
+    })
+  }
+}
+const update =async(req,res)=>{
+  try{
+     const response=await flightService.updateFlight(req.params.id,req.body);
+     return res.status(201).json({
+        data:response,
+        success:true,
+        error:'',
+        message:'Changes Done '
+     })
+  }
+  catch(error){
+    console.log("Error occured in Controller flight");
+    return res.status(500).json({
+        error:error,
+        success:false,
+        message:"Flight cannot be delivered"
+    })
+  }
+}
 module.exports={
-    create,getAll
+    create,getAll,get,update
 }
